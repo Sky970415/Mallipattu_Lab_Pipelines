@@ -42,3 +42,4 @@ The second method is using slurm file to creat a cluster job to run a server at 
 ### Custom Reference Genome
 
 ## Gene Expression Omnibus(GEO)
+### Download Fasta Files to HPC via SRA tools
