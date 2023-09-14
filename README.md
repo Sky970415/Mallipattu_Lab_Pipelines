@@ -31,11 +31,6 @@ The first method would be using MobaXTerm to run RStudio.
 ### Slurm
 The second method is using slurm file to creat a cluster job to run a server at HPC.
 
-## R Analysis
-
-### ArchR
-### Seurat
-### Pathway Analysis
 
 ## 10X Cell Ranger
 ### Alignment
@@ -43,7 +38,7 @@ There are three different cellranger program: cellranger, cellranger-arc, and ce
 
 All fastq files needs a naming convention, please click [here](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/fastq-input) for the official guide on it.
 
-    [Sample Name]\_S1_L00[Lane Number]_[Read Type]_001.fastq.gz
+    [Sample Name]_S1_L00[Lane Number]_[Read Type]_001.fastq.gz
 
 Sample Name is your custom name for your sample.
 Lane number is normally one digit.
@@ -72,3 +67,13 @@ Then, click on the customize on the study type. Uncheck all the study type and t
 Click on the new organism and study type we added in the previous steps. Now the number of dataset is reduced to 8601.
 ### Download Fasta Files to HPC via SRA tools
 
+
+    prefetch [SRR project]
+    fastq-dump [SRR project]
+
+
+## R Analysis
+
+### ArchR
+### Seurat
+### Pathway Analysis
