@@ -41,22 +41,22 @@ Open your browser and type in ```localhost:8003```. If you have a conflict in th
 ## Gene Expression Omnibus(GEO)
 [Gene Expression Omnibus](https://www.ncbi.nlm.nih.gov/geo/) is a database that contains all the bioinformatics projects. Datasets can be acquired through the searching within the website. This website is used for analyzing outside datasets, whether for method crafting or validation.
 
-![image](Caputres\GEO_Frontpage.PNG)
+![image](Caputres/GEO_Frontpage.PNG)
 On the top right of the webpage, there is a search bar. Type in keywords for the datasets. (Potential keywords: Mouse, Single Cell, Kidney.) For this example, we will be looking for mouse single cell dataset.
 
-![image](Caputres\Searching_Example.PNG)
+![image](Caputres/Searching_Example.PNG)
 Click on the upper number with hyperlink for searching in the GEO DataSets Database. 
 
-![image](Caputres\SearchResults.PNG)
+![image](Caputres/SearchResults.PNG)
 Now we have 263,758 datasets. In order to filter out the less relavent datasets, we need to set the customizations. 
 
-![image](Caputres\SearchResults_add_Mus.PNG)
+![image](Caputres/SearchResults_add_Mus.PNG)
 First click on the Customize on the left panel. Type _Mus musculus_ in the search bar to add mouse to the Organism. 
 
-![image](Caputres\SearchResults_set_study_type.PNG)
+![image](Caputres/SearchResults_set_study_type.PNG)
 Then, click on the customize on the study type. Uncheck all the study type and then check the _Expression profiling by high throughput sequencing_.
 
-![image](Caputres\SearchResults_filter_applied.PNG)
+![image](Caputres/SearchResults_filter_applied.PNG)
 Click on the new organism and study type we added in the previous steps. Now the number of dataset is reduced to 8601.
 ### Download Fasta Files to HPC via SRA tools
 To use [SRA Tools](https://github.com/ncbi/sra-tools/wiki/Download-On-Demand#downloading-data-on-demand), caching the dataset before downloading is a better practice. Simply use ```prefetch``` to cache the dataset and then use ```fastq-dump``` to download the actuall fastq files.
