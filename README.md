@@ -33,7 +33,9 @@ The first method would be using MobaXTerm to run RStudio. As we already load R a
 ### Slurm
 The second method is using slurm file to creat a cluster job to run a server at HPC node. This method needs to write up a slurm file, which you can directly download [here](slurm_files\rstudio_MACS.slurm).
 
-Put this slurm file in your home directory or any directory you want. In that directory, type ```sbatch rstudio_MAC.slurm``` to submit the job. Once the job is finished, a log file will be generated. Use ```less rstudio-server.log.XXXXXXXX``` to view the log file. The ```XXXXXXXX``` is your slurm job id, which is assigned as you upload your slurm job. In the file, there is a line starting with `ssh`. Copy the line and paste in your local command line prompt. You local instance will connect to the server. The password is the same as your password for your netid. The connection is successful without further notifications. Otherwise, it will warn you for wrong password or other issues.
+Put this slurm file in your home directory or any directory you want. In that directory, type ```sbatch rstudio_MAC.slurm``` to submit the job. Once the job is finished, a log file will be generated. In order to check the statue of your job, type ```qstat -f XXXXXXX``` in the prompt. ```XXXXXXX``` is the slurm job number.
+
+Use ```less rstudio-server.log.XXXXXXXX``` to view the log file. The ```XXXXXXXX``` is your slurm job id, which is assigned as you upload your slurm job. In the file, there is a line starting with `ssh`. Copy the line and paste in your local command line prompt. You local instance will connect to the server. The password is the same as your password for your netid. The connection is successful without further notifications. Otherwise, it will warn you for wrong password or other issues.
 
 Open your browser and type in ```localhost:8003```. If you have a conflict in the port issue, please edit your slurm file with the corresponding line. 8003 is the default setting for this server. Now you can run Rstudio in the browser.
 
@@ -86,7 +88,19 @@ For running the alignment, you can follow this [guide](https://support.10xgenomi
 
 
 ## R Analysis
-
 ### ArchR
+ArchR is an analytical package for ATAC-seq single cell analysis. It is utilized for a less memory and more efficient way to analysis ATAC-seq single cell data. It also natively support the tajectory analysis. ArchR can handle multiome dataset by itself. However, when ATAC-seq and RNA-seq are analyzed seperately. It is better to first analyze RNA-seq with Seurat and then integrate it to the ATAC component.
+#### ArchR analysis with multiome dataset
+
+#### ArchR analysis with ATAC-seq and RNA-seq dataset
+
 ### Seurat
+Seurat is a single cell analysis package for RNA-seq only. However, from the same labatory, Signac is developed to analysis ATAC-seq data based on the Seurat Objects.
+
+#### Seurat RNA single cell analysis
+
+#### Signac ATAC analysis
+
 ### Pathway Analysis
+Pathway analysis is done throught the pathview,clusterProfiler ,and ChIPseeker. 
+#### GSEA Analysis 
