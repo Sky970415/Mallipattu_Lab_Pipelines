@@ -82,17 +82,26 @@ Read type could be R1/R2 for read 1/2, and I1/I2 for index 1/2.
 
 For running the alignment, you can follow this [guide](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/tutorial_ct) to do the alignment, or simply type ```cellranger count --help``` in the prompt for usage.
 
+### Mouse Reference Genome
+Mouse reference genome is avaliable on the 10X official website. In order to download it on HPC or your local instance, type the following command in the command line:
+
+    wget "https://cf.10xgenomics.com/supp/cell-exp/refdata-gex-mm10-2020-A.tar.gz"
+
+It will download the reference file as a gzip file. You may want to unzip it with ```gzip -d file.tar.gz``` and ```tar ```, or you could directly unzip it with ```tar –xvzf documents.tar.gz –C /home/user/destination``` to unzip it to the destination folder.
 
 
 ### Custom Reference Genome
-
+Please refer to the [official guide](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/tutorial_mr) from 10X Genomics.
 
 ## R Analysis
 ### ArchR
 ArchR is an analytical package for ATAC-seq single cell analysis. It is utilized for a less memory and more efficient way to analysis ATAC-seq single cell data. It also natively support the tajectory analysis. ArchR can handle multiome dataset by itself. However, when ATAC-seq and RNA-seq are analyzed seperately. It is better to first analyze RNA-seq with Seurat and then integrate it to the ATAC component.
 #### ArchR analysis with multiome dataset
 
+Please Refer to the [guide](https://greenleaflab.github.io/ArchR_2020/Ex-Analyze-Multiome.html) by Greenleaf Lab.
+
 #### ArchR analysis with ATAC-seq and RNA-seq dataset
+Please use the ArchR [Manual](https://www.archrproject.com/bookdown/index.html) for ATAC-seq analysis. However, for RNA integration, please look into next section using Seurat to analysis first.
 
 ### Seurat
 Seurat is a single cell analysis package for RNA-seq only. However, from the same labatory, Signac is developed to analysis ATAC-seq data based on the Seurat Objects.
