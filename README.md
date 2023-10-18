@@ -82,6 +82,8 @@ Read type could be R1/R2 for read 1/2, and I1/I2 for index 1/2.
 
 For running the alignment, you can follow this [guide](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/tutorial_ct) to do the alignment, or simply type ```cellranger count --help``` in the prompt for usage.
 
+[Here](slurm_files/CellRanger.slurm) is an example for Cellranger atac alignment with slurm.
+
 ### Mouse Reference Genome
 Mouse reference genome is avaliable on the 10X official website. In order to download it on HPC or your local instance, type the following command in the command line:
 
