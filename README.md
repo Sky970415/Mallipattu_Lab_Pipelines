@@ -33,7 +33,7 @@ The first method would be using MobaXTerm to run RStudio. As we already load R a
 ### Slurm
 The second method is using slurm file to creat a cluster job to run a server at HPC node. This method needs to write up a slurm file, which you can directly download [here](slurm_files\rstudio_MACS.slurm).
 
-Put this slurm file in your home directory or any directory you want. In that directory, type ```sbatch rstudio_MAC.slurm``` to submit the job. Once the job is finished, a log file will be generated. In order to check the statue of your job, type ```qstat -f XXXXXXX``` in the prompt. ```XXXXXXX``` is the slurm job number.
+Put this slurm file in your home directory or any directory you want. In that directory, type ```sbatch rstudio_MAC.slurm``` to submit the job. Once the job is finished, a log file will be generated. In order to check the statue of your job, type ```qstat -f XXXXXXX``` in the prompt. ```XXXXXXX``` is the slurm job number. For more information about cluster queue management, please refer to this [link](https://it.stonybrook.edu/help/kb/using-the-slurm-workload-manager) with official guide for Stony Brook Seawulf HPC.
 
 Use ```less rstudio-server.log.XXXXXXXX``` to view the log file. The ```XXXXXXXX``` is your slurm job id, which is assigned as you upload your slurm job. In the file, there is a line starting with `ssh`. Copy the line and paste in your local command line prompt. You local instance will connect to the server. The password is the same as your password for your netid. The connection is successful without further notifications. Otherwise, it will warn you for wrong password or other issues.
 
