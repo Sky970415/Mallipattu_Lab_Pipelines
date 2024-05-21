@@ -2,8 +2,15 @@
 This repository is used for storing the Pipelines of single cell analysis from the start to the end.  Records pipelines for Single Cell analysis
 ## HPC
 
+### Seawulf HPC
+
+Seawulf HPC is the high performing computer maintained by Stony Brook University. Please take a look at the [starting guide](https://it.stonybrook.edu/help/kb/getting-started-guide) made by Stony Brook IT department.
+
+
 ### HPC Setup
-In order to load necessary module during the startup of HPC cluster, it is better to edit the .bachrc file to change the startup sequence.
+HPC is installed with a lot of bioinformatic related modules. Instead of managing modules by yourself using ```sudo install``` command, it is better to load the installed module from HPC.
+
+In order to load necessary/commonly used modules during the startup of HPC cluster, editing the .bachrc file will change the startup sequence and load them automatically everytime.
 
 Type ```vim ~/.bashrc``` to edit your bashrc file. Add the following blocks at the end of the file(vim guide: press keyboard ```i``` to enter insert mode):
 ```
@@ -22,7 +29,7 @@ Press ```Esc``` to quit insert mode and press ```:``` to enter command. Type ```
 
 The list above includes most of the analysis tools we need to do analysis. For any other program you want to use, please check it in the cluster command line ```module avial``` to check out whether it is avaliable in the cluster. Use similar fashion to add to your startup bashrc file like the example above. For one time use, just type the module load command in the prompt. It will be unload once you disconnected to HPC.
 
-If you are having memory issues, you can always use a different node. Type ```ssh cn-mem``` in the prompt to switch into the node with a higher memory. To switch back, type ```ssh login1```.
+Some of the bioinformatic packages/modules from later sections comsume a lot of memory. If you are having memory issues, you can always use a different node. Type ```ssh cn-mem``` in the prompt to switch into the node with a higher memory. To switch back, type ```ssh login1```.
 
 ## RStudio
 There are two methods for using RStudio on HPC. It is recommanded to use RStudio on HPC unless you have a powerful computer with around 60GB of RAM. Seurat consuming a lot of RAM and ArchR only runs on linux-based system, which are the two major analysis tools we are using for single cell analysis. 
@@ -68,6 +75,9 @@ To use [SRA Tools](https://github.com/ncbi/sra-tools/wiki/Download-On-Demand#dow
     fastq-dump [SRR project] --outdir [PATH]
 This will download the fastq file into the given path.
 
+## Single Cell Alignment
+Fasta/fastq files must be aligned first to do the later downstream analysis. Most of the dataset will be avaliable on the HPC under the group folder(/gpfs/projects/MallipattuGroup). Alignment can be preformed directly on the HPC. The fasta/fastq files are space consuming. It is good practice to copy them into scratch folder first and do alignment there.
+
 ## 10X Cell Ranger
 ### Alignment
 There are three different cellranger program: cellranger, cellranger-arc, and cellranger-atac. Cellranger can only align scRNA. Cellranger-atac can only align scATAC. Cellranger-arc is for multiome alignents.
@@ -87,13 +97,33 @@ For running the alignment, you can follow this [guide](https://support.10xgenomi
 ### Mouse Reference Genome
 Mouse reference genome is avaliable on the 10X official website. In order to download it on HPC or your local instance, type the following command in the command line:
 
+CellRanger-ARC:
+
+    wget https://cf.10xgenomics.com/supp/cell-arc/refdata-cellranger-arc-mm10-2020-A-2.0.0.tar.gz
+
+
+CellRanger:
+
     wget "https://cf.10xgenomics.com/supp/cell-exp/refdata-gex-mm10-2020-A.tar.gz"
+
+### Human Reference Genome
+
+Cellranger-ARC:
+
+    wget https://cf.10xgenomics.com/supp/cell-arc/refdata-cellranger-arc-GRCh38-2020-A-2.0.0.tar.gz
+
+CellRanger:
+
+    wget "https://cf.10xgenomics.com/supp/cell-exp/refdata-gex-GRCh38-2020-A.tar.gz"
+
 
 It will download the reference file as a gzip file. You may want to unzip it with ```gzip -d file.tar.gz``` and ```tar ```, or you could directly unzip it with ```tar –xvzf documents.tar.gz –C /home/user/destination``` to unzip it to the destination folder.
 
 
 ### Custom Reference Genome
 Please refer to the [official guide](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/tutorial_mr) from 10X Genomics.
+
+## Star/StarSolo
 
 ## R Analysis
 ### ArchR
