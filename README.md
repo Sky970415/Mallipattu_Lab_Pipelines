@@ -16,6 +16,7 @@ Type ```vim ~/.bashrc``` to edit your bashrc file. Add the following blocks at t
 ```
 module load R/4.1.1
 module load rstudio/2022.07
+module load diffexp/1.0
 module load curl/7.52.1
 module load geos/3.11.0
 module load hdf5/1.10.4
@@ -117,7 +118,7 @@ CellRanger:
     wget "https://cf.10xgenomics.com/supp/cell-exp/refdata-gex-GRCh38-2020-A.tar.gz"
 
 
-It will download the reference file as a gzip file. You may want to unzip it with ```gzip -d file.tar.gz``` and ```tar ```, or you could directly unzip it with ```tar –xvzf documents.tar.gz –C /home/user/destination``` to unzip it to the destination folder.
+It will download the reference file as a gzip file. You may want to unzip it with ```gzip -d file.tar.gz``` and ```tar ```, or you could directly unzip it with ```tar -xvzf documents.tar.gz -C /home/user/destination``` to unzip it to the destination folder.
 
 
 ### Custom Reference Genome
@@ -145,3 +146,27 @@ Seurat is a single cell analysis package for RNA-seq only. However, from the sam
 ### Pathway Analysis
 Pathway analysis is done throught the pathview,clusterProfiler ,and ChIPseeker. 
 #### GSEA Analysis 
+
+## Python Analysis
+
+### Jupyter Notebook setup
+
+Unload all virtual environment of any kind first.
+
+    module load jupyter/7.4.4
+    conda create -n Mallipattu/rnaVelocity
+    source activate Mallipattu/rnaVelocity
+
+    conda install anndata -c conda-forge
+    conda install -c conda-forge scanpy python-igraph leidenalg
+    pip install -U scvelo
+    pip install pyroe
+    conda install ipykernel
+
+    python -m ipykernel install --user --name=rnaVelocity
+
+
+
+### RNA Velocity
+
+      
