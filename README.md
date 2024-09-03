@@ -169,4 +169,5 @@ Unload all virtual environment of any kind first.
 
 ### RNA Velocity
 
-      
+      Alevin-fry is avaliable in singlecell/1.0 module
+      Salmon is also avaliable on HPC module as Salmon
