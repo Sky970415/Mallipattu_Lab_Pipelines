@@ -169,5 +169,33 @@ Unload all virtual environment of any kind first.
 
 ### RNA Velocity
 
-      Alevin-fry is avaliable in singlecell/1.0 module
-      Salmon is also avaliable on HPC module as Salmon
+Alevin-fry is avaliable in singlecell/1.0 module
+Salmon is also avaliable on HPC module as Salmon
+
+You should perform all the scripts in the Scrach folder for preparing the splicing alignment files
+
+The tutorial can be found at this [link](https://combine-lab.github.io/alevin-fry-tutorials/2021/alevin-fry-velocity/)
+
+First, get the the 10X pre-built reference sequences and unzip it
+    
+    wget http://cf.10xgenomics.com/supp/cell-exp/refdata-cellranger-mm10-2.1.0.tar.gz
+
+    tar xvf refdata-cellranger-mm10-2.1.0.tar.gz
+    
+From the reference sequence, we will get the splici reference using pyroe
+
+    pyroe make-splici refdata-cellranger-mm10-2.1.0/fasta/genome.fa refdata-cellranger-mm10-2.1.0/genes/genes.gtf 151 mm10_2.1.0_splici_fl146  --flank-trim-length 5 --filename-prefix splici
+
+Using the splici reference to build the salmon-alevin splici index
+
+    salmon index -t data/mm10-2.1.0_splici_fl146/splici_fl146.fa -i mm10-2.1.0_splici_fl146_idx -p 16
+
+From the fastq file to generate the RAD files
+
+    salmon alevin -i mm10-2.1.0_splici_fl146_idx -p 16 -l ISR --chromium --sketch -1 data/SRR9201794_1.fastq.gz -2 data/SRR9201794_2.fastq.gz -o pancreas_map
+
+    alevin-fry generate-permit-list -d fw -k -i pancreas_map -o pancreas_quant
+
+    alevin-fry collate -t 16 -i pancreas_quant -r pancreas_map
+    
+    alevin-fry quant -t 16 -i pancreas_quant -o pancreas_quant_res --tg-map data/mm10_2.1.0_splici_fl146/splici_fl146_t2g_3col.tsv --resolution cr-like --use-mtx
